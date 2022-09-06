@@ -1,0 +1,9 @@
+syntax = "proto3";
+option go_package = "next-js-protocol_buf-example/proto";
+package proto;
+
+import "user.proto";
+
+message UsersReadResponse {
+  repeated User users = 1;
+}
