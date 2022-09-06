@@ -1,10 +1,8 @@
 import type { NextPage } from "next";
-import { useEffect, useState } from "react";
 import { Stack, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import { User } from "./../gen/user_pb";
-import { UsersReadResponse } from "./../gen/users_read_response_pb";
+import { getUsers } from "../apis/v1/users";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -15,24 +13,11 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Home: NextPage = () => {
-  const [users, setUsers] = useState<User.AsObject[]>([]);
+  const { data: users, error } = getUsers();
 
-  useEffect(() => {
-    const main = async () => {
-      const res = await fetch("/api/v1/users", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/protobuf",
-        },
-      });
-
-      const buf = new Uint8Array(await res.arrayBuffer());
-      const resp = UsersReadResponse.deserializeBinary(buf).toObject();
-      setUsers(resp.usersList);
-    };
-
-    main();
-  }, [setUsers]);
+  if (error) {
+    console.error(error);
+  }
 
   return (
     <Stack spacing={2}>
