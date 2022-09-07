@@ -15,7 +15,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const Home: NextPage = () => {
   const { data: users, error } = getUsers();
 
-  if (error) {
+  if (error.length > 0) {
     console.error(error);
   }
 

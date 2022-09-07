@@ -7,28 +7,16 @@ import { UsersReadResponse } from "gen/users_read_response_pb";
 import { Error, ErrorCode, ErrorResponse } from "gen/error_response_pb";
 
 export default async function handler(
-  _req: NextApiRequest,
+  req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    const users = await prisma.user.findMany({
-      take: 10,
-    });
-
-    const resp = new UsersReadResponse();
-    resp.setUsersList(
-      users.map((r) => {
-        const u = new User();
-        u.setId(r.id);
-        u.setName(r.name ?? "");
-        u.setEmail(r.email);
-
-        return u;
-      })
-    );
-
-    const buffer = Buffer.from(resp.serializeBinary());
-    res.status(200).send(buffer);
+    switch (req.method?.toLowerCase()) {
+      case "get":
+        await get(req, res);
+      default:
+        throw new Error();
+    }
   } catch (e) {
     const err = new Error();
     err.setCode(ErrorCode.INTERNAL);
@@ -42,3 +30,24 @@ export default async function handler(
     await prisma.$disconnect();
   }
 }
+
+const get = async (_req: NextApiRequest, res: NextApiResponse) => {
+  const users = await prisma.user.findMany({
+    take: 10,
+  });
+
+  const resp = new UsersReadResponse();
+  resp.setUsersList(
+    users.map((r) => {
+      const u = new User();
+      u.setId(r.id);
+      u.setName(r.name ?? "");
+      u.setEmail(r.email);
+
+      return u;
+    })
+  );
+
+  const buffer = Buffer.from(resp.serializeBinary());
+  res.status(200).send(buffer);
+};

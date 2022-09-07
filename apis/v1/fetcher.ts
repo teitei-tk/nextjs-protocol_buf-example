@@ -6,6 +6,7 @@ const protocolBuffersFetcher = (url: string, init?: RequestInit) => {
       headers: {
         "Content-Type": "application/protobuf",
       },
+      ...(init ?? {}),
     });
 
     const data = await result.arrayBuffer();
