@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "prisma/prisma-client";
 
-import { User } from "../../../gen/user_pb";
-import { UsersReadResponse } from "../../../gen/users_read_response_pb";
+import { User } from "gen/user_pb";
+import { UsersReadResponse } from "gen/users_read_response_pb";
 
 export default async function handler(
   _req: NextApiRequest,

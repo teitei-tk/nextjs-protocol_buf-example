@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { Stack, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import { getUsers } from "../apis/v1/users";
+import { getUsers } from "apis/v1/users";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",

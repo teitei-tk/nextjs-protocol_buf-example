@@ -1,7 +1,8 @@
 import useSWR from "swr";
-import { protocolBuffersFetcher } from "./fetcher";
-import { User } from "./../../gen/user_pb";
-import { UsersReadResponse } from "./../../gen/users_read_response_pb";
+
+import { protocolBuffersFetcher } from "apis/v1/fetcher";
+import { User } from "gen/user_pb";
+import { UsersReadResponse } from "gen/users_read_response_pb";
 
 const getUsers = () => {
   const url = "/api/v1/users";
