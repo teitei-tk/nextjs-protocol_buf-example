@@ -1,0 +1,17 @@
+syntax = "proto3";
+option go_package = "next-js-protocol_buf-example/proto";
+package proto;
+
+enum ErrorCode {
+  UNKNOWN = 0;
+  INTERNAL = 1;
+}
+
+message Error {
+  ErrorCode code = 1;
+  string reason = 2;
+}
+
+message ErrorResponse {
+  repeated Error errors = 1;
+}
