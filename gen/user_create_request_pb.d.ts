@@ -3,7 +3,7 @@
 
 import * as jspb from "google-protobuf";
 
-export class UserRegisterRequest extends jspb.Message {
+export class UserCreateRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
@@ -11,16 +11,16 @@ export class UserRegisterRequest extends jspb.Message {
   setEmail(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UserRegisterRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: UserRegisterRequest): UserRegisterRequest.AsObject;
+  toObject(includeInstance?: boolean): UserCreateRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UserCreateRequest): UserCreateRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UserRegisterRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UserRegisterRequest;
-  static deserializeBinaryFromReader(message: UserRegisterRequest, reader: jspb.BinaryReader): UserRegisterRequest;
+  static serializeBinaryToWriter(message: UserCreateRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserCreateRequest;
+  static deserializeBinaryFromReader(message: UserCreateRequest, reader: jspb.BinaryReader): UserCreateRequest;
 }
 
-export namespace UserRegisterRequest {
+export namespace UserCreateRequest {
   export type AsObject = {
     name: string,
     email: string,

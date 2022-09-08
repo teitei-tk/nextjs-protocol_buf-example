@@ -2,7 +2,8 @@ syntax = "proto3";
 option go_package = "next-js-protocol_buf-example/proto";
 package proto;
 
-message UserCreateRequest {
-    string name = 1;
-    string email = 2;
+import "user.proto";
+
+message UserCreateResponse {
+    User user = 1;
 }
